@@ -2,6 +2,7 @@
 #include <iostream>
 #include <GL/glut.h>
 #include "grid.h"
+#include <vector>
 
 #define SIZE 1.0
 enum DIRECTION { RIGHT, LEFT, DOWN, UP, STOP };//동서남북 순서

@@ -1,19 +1,23 @@
 #include "floodfill.h"
 
-void FloodFill(Grid** map, User& user) {
+void FloodFill(std::vector<Grid**>& map, int n, User& user) {
 	//Change all grid's TF
-	FloodFill(map, user, 0, 0);
+	FloodFill(map[n], user, 0, 0);
 	//update the territory & reset all grid's TF into T
 	for (int i = 0; i < MAP::ROW; ++i) {
 		for (int j = 0; j < MAP::COL; ++j) {
-			if (map[i][j].getTF() == true) {
-				map[i][j].setState(STATE::ON);
+			if (map[n][i][j].getTF() == true) {
+				map[n][i][j].setState(STATE::ON);
+				for (std::vector<Grid**>::size_type k = 0; k < map.size(); ++k) {
+					if (k == n || map[k][i][j].getState() == STATE::ING) continue;
+					map[k][i][j].setState(STATE::OFF);
+				}
 			}
-			else map[i][j].setTF(true);
+			else map[n][i][j].setTF(true);
 		}
 	}
 }
-void FloodFill(Grid** map, User& user, int row, int col) {
+void FloodFill(Grid**& map, User& user, int row, int col) {
 	//check the grid's state
 	if (row >= MAP::ROW || col >= MAP::COL
 		|| row < 0 || col < 0) return;

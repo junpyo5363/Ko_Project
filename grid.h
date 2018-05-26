@@ -1,8 +1,8 @@
 #pragma once
 
-namespace MAP {
-	const unsigned int ROW = 52;
-	const unsigned int COL = 52;
+namespace MAP {//실제 게임에 사용되는 맵
+	const unsigned int ROW = 152;
+	const unsigned int COL = 152;
 };
 enum STATE { OFF, ING, ON };
 
